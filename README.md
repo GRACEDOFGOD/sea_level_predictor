@@ -1,47 +1,86 @@
-# sea_level_predictor
-import pandas as pd
-import matplotlib.pyplot as plt
-from scipy.stats import linregress
+# 🌊 Sea Level Predictor
 
-def draw_line_plot():
-    # Load the data
-    df = pd.read_csv('epa-sea-level.csv')
+![Data Science Badge](https://img.shields.io/badge/Data%20Science-Regression%20Analysis-blueviolet?style=flat-square)
 
-    # Create scatter plot
-    plt.figure(figsize=(10, 5))
-    plt.scatter(df['Year'], df['CSIRO Adjusted Sea Level'], color='blue', label='Observed Data')
+---
 
-    # Create first line of best fit (from the entire dataset)
-    slope, intercept, r_value, p_value, std_err = linregress(df['Year'], df['CSIRO Adjusted Sea Level'])
-    
-    # Create x values for the line of best fit
-    x_fit = pd.Series(range(1880, 2051))  # From 1880 to 2050
-    y_fit = slope * x_fit + intercept
+## 📖 Project Overview
 
-    # Plot the line of best fit
-    plt.plot(x_fit, y_fit, color='red', label='Best Fit Line (All Data)')
+This project analyzes historical global sea level data from 1880 to 2014 to understand long-term trends and predict future sea level rise through the year 2050. Using **linear regression**, it fits two lines of best fit:
 
-    # Create second line of best fit (from the year 2000 onwards)
-    df_recent = df[df['Year'] >= 2000]
-    slope_recent, intercept_recent, r_value_recent, p_value_recent, std_err_recent = linregress(df_recent['Year'], df_recent['CSIRO Adjusted Sea Level'])
-    
-    # Create x values for the second line of best fit
-    x_fit_recent = pd.Series(range(2000, 2051))  # From 2000 to 2050
-    y_fit_recent = slope_recent * x_fit_recent + intercept_recent
+- One spanning **all available years (1880–2014)**
+- One focused on the **more recent data from 2000 onward**
 
-    # Plot the second line of best fit
-    plt.plot(x_fit_recent, y_fit_recent, color='green', label='Best Fit Line (2000 Onwards)')
+These models provide insights into how sea levels have changed over time and project future increases under different trends.
 
-    # Labeling the plot
-    plt.title('Rise in Sea Level')
-    plt.xlabel('Year')
-    plt.ylabel('Sea Level (inches)')
-    plt.legend()
-    plt.grid()
+---
 
-    # Save the figure
-    plt.savefig('sea_level_plot.png')
-    plt.show()
+## 📊 Dataset
 
-# Uncomment to run the function
-# draw_line_plot()
+- Source: U.S. Environmental Protection Agency (EPA) and CSIRO (Commonwealth Scientific and Industrial Research Organisation)
+- File: `epa-sea-level.csv`
+- Timeframe: 1880 to 2014
+- Features:
+  - **Year**: Calendar year of observation
+  - **CSIRO Adjusted Sea Level**: Measured sea level in inches, adjusted for various factors
+
+---
+
+## 🔍 Visualizations
+
+### Scatter Plot with Regression Lines
+
+![Sea Level Plot](./sea_level_plot.png)
+
+- **Blue dots:** Actual measured sea level data points  
+- **Red line:** Linear trend from 1880 to 2014 projected through 2050  
+- **Green dashed line:** Linear trend from 2000 to 2014 projected through 2050
+
+---
+
+## 🧠 Key Insights
+
+- The sea level has been rising steadily since 1880, with an overall upward trend clearly visible.  
+- The trend line fit from 2000 onward indicates a possibly accelerated rate of rise in recent years.  
+- Projecting these trends forward shows a significant increase in sea levels by 2050, which underscores the urgency of addressing climate change impacts.
+
+---
+
+## ✅ Technologies & Skills Demonstrated
+
+- Data cleaning and preprocessing with **Pandas**  
+- Scatter plotting and regression line plotting with **Matplotlib**  
+- Statistical modeling using **linear regression** via `scipy.stats.linregress`  
+- Interpretation of time series and trend analysis  
+
+---
+
+## ⚙️ How to Run
+
+1. Clone or download this repository.  
+2. Ensure you have Python 3 and necessary libraries (`pandas`, `matplotlib`, `scipy`).  
+3. Run the provided Python script or notebook to generate the visualizations and predictions.  
+
+---
+
+## 📬 Contact
+
+- 📧 Email: oluwatoyin.eniitan2020@gmail.com  
+- 🔗 LinkedIn: [https://www.linkedin.com/in/eniitan-oluwatoyin-93ab9022b/](https://www.linkedin.com/in/eniitan-oluwatoyin-93ab9022b/)  
+- 🧠 GitHub: [https://github.com/GRACEDOFGOD](https://github.com/GRACEDOFGOD)
+
+---
+
+## 📝 Conclusion & Recommendation
+
+The sea level rise projections indicate a continuing and possibly accelerating increase in ocean levels, posing risks to coastal communities worldwide. These findings emphasize the need for:
+
+- Continued monitoring and modeling of sea level changes  
+- Implementing mitigation strategies to reduce greenhouse gas emissions  
+- Preparing adaptation measures for vulnerable areas  
+
+This project illustrates the power of combining historical data with statistical modeling to inform climate science and policy.
+
+---
+
+> Feel free to explore, reuse, and build upon this project for your own data science journey!
